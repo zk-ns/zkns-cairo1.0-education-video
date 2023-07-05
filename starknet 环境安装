@@ -1,0 +1,50 @@
+可以直接使用第三方工具，比如protostar，https://github.com/software-mansion/protostar
+也可以使用官方给出的教程，https://book.starknet.io/chapter_1/environment_setup.html
+1. 先安装python3.9(参考上一篇教程)
+2. 安装rust
+安装rust命令如下：
+$ curl https://sh.rustup.rs -sSf | sh
+
+3. 安装需求工具
+sudo apt install -y libgmp3-dev
+
+4. 安装Starknet CLI需求工具
+pip install ecdsa fastecdsa sympy
+
+5. 安装Starknet CLI:
+先卸载
+pip uninstall cairo-lang
+
+后安装
+pip install cairo-lang
+
+starknet含在cairo-lang里面。
+查看版本：
+starknet --version
+
+root@landon01:~/myprojects/test1# starknet --version
+starknet 0.11.2
+
+6. 安装Cairo Compiler
+# Go to your $HOME directory
+cd ~/
+# Clone the Cairo compiler repo to a folder called .cairo in your home directory
+git clone https://github.com/starkware-libs/cairo/ .cairo
+
+# Checkout the working branch and generate the release binaries
+cd .cairo/
+
+git checkout tags/v1.1.0
+cargo build --all --release
+
+由于是rust的cargo build，耗费时间较长
+配种环境变量：
+vim ~/.bashrc
+
+加入一行
+export PATH="$HOME/.cairo/target/release:$PATH"
+
+然后source ~/.bashrc
+检查是否成功
+root@landon01:~# cairo-compile --version
+cairo-lang-compiler 1.1.0
