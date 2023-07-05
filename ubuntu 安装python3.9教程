@@ -1,0 +1,49 @@
+开始之前要安装依赖
+sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev
+
+1.下载python3.9.0
+wget https://www.python.org/ftp/python/3.9.0/Python-3.9.0.tgz
+
+2.对下载后的python3.9.0进行解压
+tar -zxvf Python-3.9.0.tgz
+
+3.解压后进入Python-3.9.0目录
+cd Python3.9.0/
+
+4.开始安装
+./configure --enable-optimizations
+
+接着执行以下代码
+make
+sudo make install
+
+5.设置软链接
+which python3
+
+
+
+找到的路径建立新的链接
+sudo ln -s /usr/local/bin/python3 /usr/bin/python
+
+若/usr/bin/python存在，先删除该文件或者备份该文件
+which pip3
+
+设置pip的软链接
+sudo ln -s /usr/local/bin/pip3 /usr/bin/pip
+
+同理，若/usr/bin/pip存在，先删除该文件或者备份该文件
+6.设置python的环境变量
+vim ~/.bashrc
+
+在bashrc里面添加一下代码
+alias python='/usr/local/bin/python3'
+alias pip='/usr/local/bin/pip3'
+
+然后让变量生效
+source ~/.bashrc
+
+输入pip --version 及python --version检查结果
+root@landon01:~/myprojects/test1# pip --version
+pip 20.2.3 from /usr/local/lib/python3.9/site-packages/pip (python 3.9)
+root@landon01:~/myprojects/test1# python --version
+Python 3.9.0
