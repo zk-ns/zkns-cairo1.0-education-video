@@ -1,0 +1,36 @@
+设置环境变量
+# Use Starknet testnet
+export STARKNET_NETWORK=alpha-goerli
+# Set the default wallet implementation to be used by the CLI
+export STARKNET_WALLET=starkware.starknet.wallets.open_zeppelin.OpenZeppelinAccount
+# Set the path to the cairo 1 compiler binary. Adapt this path to fit your installation if needed
+export CAIRO_COMPILER_DIR=~/.cairo/target/release/
+# Compiler arguments
+export CAIRO_COMPILER_ARGS=--add-pythonic-hints
+
+主网：export STARKNET_NETWORK=alpha-mainnet
+
+新建账号：
+starknet new_account --account account_name
+
+账户信息存放：~/.starknet_accounts/
+Deploying账户（需转一点以太给这个账户）
+# Deploying your account
+starknet deploy_account --account william
+
+
+编译合约：
+starknet-compile hello_starknet.cairo hello_starknet.json
+
+declare合约：
+starknet declare --contract hello_starknet.json --account william
+
+deploy合约：
+starknet deploy --class_hash 0x8ceb9796d2809438d1e992b8ac17cfe83d0cf5944dbad948a370e0b5d5924f --account william
+
+class_hash是上一步declare得出的class_hash结果。
+
+若是constructor有传参，则加入 --inputs 后面接参数，有几个传几个！
+starknet deploy --class_hash 0x7db3cd93bb8813b059efb67f1cb3f99f5665d15d1c035a72f5c51e44574a058 --account william --inputs 71959616777844 4280903 18
+
+字符串转felt的网站：https://www.stark-utils.xyz/converter
