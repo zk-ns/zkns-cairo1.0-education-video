@@ -10,6 +10,7 @@ export CAIRO_COMPILER_ARGS=--add-pythonic-hints
 
 主网：export STARKNET_NETWORK=alpha-mainnet
 
+
 新建账号：
 starknet new_account --account account_name
 
